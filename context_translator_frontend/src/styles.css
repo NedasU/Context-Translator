@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+:root {
+  --selected-background-color: #A2A8D3;
+  --unselected-background-color: #D3D6DB;
+  --active-font-color: #1A3A5A;
+  --inactive-font-color: #666666;
+  --main-layout: flex;
+  --main-layout-direction:column;
+  --page-background-color: #F5F7FA;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.homePage {
+  display: var(--main-layout);
+  flex-direction: var(--main-layout-direction);
+  height: 100vh;
+  background-color: var(--page-background-color);
+}
+
+
+.header {
+  --header-background-color: #4A90E2;
+  --header-title-color: #1A3A5A;
+  --header-description-color: #4A688A;
+  
+  --header-title-font-family:Playfair Display, serif;
+  --header-description-font-family:Merriweather, serif;
+  background-color: var(--header-background-color);
+  display: var(--main-layout);
+  flex-direction: row;
+  gap: 5rem;
+  align-items: center;
+  height: 12rem;
+  max-width: 100%;
+  padding-left: 5rem;
+}
+
+.header .headerTitle {
+  color: var(--header-title-color);
+  font-family: var(--header-title-font-family);
+  font-style: regular;
+  font-size: 2.5rem;
+}
+
+.header .headerDescription {
+  color: var(--header-description-color);
+  font-family: var(--header-description-font-family);
+  font-style: regular;
+  font-size: 2rem;
+}
+
+.contentArea {
+  display: var(--main-layout);
+  flex-direction: var(--main-layout-direction);
+  height: 100%;
+  max-width: 100%;
+  margin: 7rem 15rem 0 15rem;
+}
+
+.contextSelector {
+  display: var(--main-layout);
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+
+.contextSelectorItem {
+  background-color: var(--unselected-background-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-family: var(--header-description-font-family);
+  font-style: regular;
+  font-size: 1.5rem;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.contextSelectorItem:hover {
+  background-color: var(--selected-background-color);
+  transition: background-color 0.3s ease;
+}
+
+.languageSelector {
+  display: var(--main-layout);
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 2rem;
+  background-color: #F0F2F5;
+}
+
+.languageBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1rem 1rem 3rem;
+  font-family: var(--header-description-font-family);
+  color: #333A56;
+  font-size: 2rem;
+  border: 1px solid #D9D9D9;
+}
+
+.translatorFormContainer {
+  display: var(--main-layout);
+  flex-direction: row;
+  max-width: 100%;
+  margin-bottom: 3rem;
+  border: 1px solid #D9D9D9;
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.translatorForm {
+  background-color: #F0F2F5;
+  padding: 1rem 1rem 1rem 1rem ;
+  max-width: 100%;
+  border-right: 1px solid #D9D9D9;
+  flex: 1;
+}
+
+
+.translatorFormTextArea {
+  background-color: #F0F2F5;
+  border: none;
+  font-family: var(--header-description-font-family);
+  font-size: 2rem;
+  color: 666666;
+  max-width: 100%;
+  width: 100%;
+  height: 10rem;
+  resize: none;
+}
+
+.additionalContextContainer {
+  background-color: #D3D6DB;
+  max-width: 100%;
+  height: auto;
+  max-height: 5rem;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+
+.additionalContextTextArea {
+  background-color: #F0F2F5;
+  border: none;
+  font-family: var(--header-description-font-family);
+  font-size: 1.5rem;
+  color: 666666;
+  max-width: 100%;
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  resize: none;
+  line-height: 2rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+textarea:focus {
+  outline: none;
+}
