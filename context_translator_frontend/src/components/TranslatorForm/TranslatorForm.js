@@ -1,25 +1,27 @@
-import React from 'react';
-import "../../styles.css";
+import React, { useContext } from 'react';
+import { TranslationContext} from "../../Contexts/TranslationContext";
 
 
 
 function TranslatorForm() {
+    const { inputText, setInputText, translatedText } = useContext(TranslationContext);
+
     return (
         <div className="translatorFormContainer">
             <div className="translatorForm">
                 <textarea 
                 className="translatorFormTextArea"
                 placeholder="Type to Translate"
-                // value={inputText}
-                // onChange={(e) => setInputText(e.target.value)}
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
                 />
             </div>
             <div className="translatorForm">
                 <textarea 
                 className="translatorFormTextArea"
-                placeholder="Translated Output"
+                placeholder=""
                 readOnly={true}
-                // value={outputText}
+                value={translatedText}
                 />
             </div>
         </div>

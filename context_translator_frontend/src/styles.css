@@ -71,6 +71,7 @@ html, body {
   align-items: center;
 }
 
+
 .contextSelectorItem {
   background-color: var(--unselected-background-color);
   padding: 0.75rem 1.5rem;
@@ -79,12 +80,14 @@ html, body {
   font-style: regular;
   font-size: 1.5rem;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-.contextSelectorItem:hover {
+.contextSelectorItem.selected {
   background-color: var(--selected-background-color);
   transition: background-color 0.3s ease;
 }
+
 
 .languageSelector {
   display: var(--main-layout);
@@ -145,8 +148,13 @@ html, body {
   border-radius: 1rem;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease;
 }
 
+.additionalContextContainer.selected {
+  background-color: var(--selected-background-color);
+  transition: background-color 0.3s ease;
+}
 
 .additionalContextTextArea {
   background-color: #F0F2F5;

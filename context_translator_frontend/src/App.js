@@ -1,4 +1,4 @@
-import HomePage from './pages/Home/HomePage';
+import HomePage from './pages/HomePage/HomePage';
 import { TranslationProvider } from './Contexts/TranslationContext';
 function App() {
   return (

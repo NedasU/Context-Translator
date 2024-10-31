@@ -1,18 +1,23 @@
-import React from 'react';
-import "../../styles.css";
+import React, { useContext } from 'react';
+import { TranslationContext } from '../../Contexts/TranslationContext';
 
 function ContextSelector() {
+    const { formality, setFormality, context } = useContext(TranslationContext);
+
+
     return (
         <div className="contextSelector">
-            <div className="contextSelectorItem">
+            <button value={'formal'} className={`contextSelectorItem ${formality === 'formal' ? 'selected' : ''}`}
+                onClick={(e) => {setFormality(e.target.value)}}>
                 Formal
-            </div>
-            <div className="contextSelectorItem">
+            </button>
+            <button value={'informal'} className={`contextSelectorItem ${formality === 'informal' ? 'selected' : ''}`}
+                onClick={(e) => {setFormality(e.target.value)}}>
                 Informal
-            </div>
-            <div className="contextSelectorItem">
+            </button>
+            <button className={`contextSelectorItem ${context !== '' ? 'selected' : ''}`}>
                 Additional Context?
-            </div>
+            </button>
         </div>
     )
 }

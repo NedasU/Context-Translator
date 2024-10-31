@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
-import ContentArea from '../../components/ContentArea';
+import ContentArea from '../../components/ContentArea/ContentArea';
 import "../../styles.css";
 
 function HomePage() {

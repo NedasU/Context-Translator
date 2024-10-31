@@ -5,7 +5,7 @@ export const TranslationContext = createContext();
 export const TranslationProvider = ({ children }) => {
     const [sourceLanguage, setSourceLanguage] = useState('EN');
     const [targetLanguage, setTargetLanguage] = useState('LT');
-    const [userText, setUserText] = useState('');
+    const [inputText, setInputText] = useState('');
     const [formality, setFormality] = useState('informal');
     const [context, setContext] = useState('');
     const [translatedText, setTranslatedText] = useState('');
@@ -20,7 +20,7 @@ export const TranslationProvider = ({ children }) => {
                 body: JSON.stringify({
                     sourceLanguage,
                     targetLanguage,
-                    userText,
+                    inputText,
                     formality,
                     context
                 }),
@@ -38,8 +38,8 @@ export const TranslationProvider = ({ children }) => {
             setSourceLanguage,
             targetLanguage,
             setTargetLanguage,
-            userText,
-            setUserText,
+            inputText,
+            setInputText,
             formality,
             setFormality,
             context,
