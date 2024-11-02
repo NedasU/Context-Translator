@@ -4,7 +4,7 @@ export const TranslationContext = createContext();
 
 export const TranslationProvider = ({ children }) => {
     const [sourceLanguage, setSourceLanguage] = useState('EN');
-    const [targetLanguage, setTargetLanguage] = useState('LT');
+    const [targetLanguage, setTargetLanguage] = useState('EN');
     const [inputText, setInputText] = useState('');
     const [formality, setFormality] = useState('informal');
     const [context, setContext] = useState('');
