@@ -12,7 +12,7 @@ export const TranslationProvider = ({ children }) => {
 
     const translate = async () => {
         try {
-            const response = await fetch("http://localhost:3000/translate", {
+            const response = await fetch("http://localhost:5000/translate", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -26,6 +26,7 @@ export const TranslationProvider = ({ children }) => {
                 }),
             });
             const data = await response.json();
+            console.log(data)
             setTranslatedText(data.translatedText);
         } catch (error) {
             console.error("Error Translating Text: ", error);

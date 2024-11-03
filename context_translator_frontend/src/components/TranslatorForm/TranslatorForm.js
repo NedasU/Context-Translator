@@ -4,7 +4,20 @@ import { TranslationContext} from "../../Contexts/TranslationContext";
 
 
 function TranslatorForm() {
-    const { inputText, setInputText, translatedText } = useContext(TranslationContext);
+    const { inputText, setInputText, translatedText, translate } = useContext(TranslationContext);
+
+    const handleKeyDown = (e) =>{
+        if (e.key === 'Enter' && !e.shiftKey){
+            e.preventDefault();
+            handleTranslate();
+        }
+    }
+
+    const handleTranslate = () => {
+        if (inputText.trim()) {
+            translate();
+        }
+    }
 
     return (
         <div className="translatorFormContainer">
@@ -14,6 +27,7 @@ function TranslatorForm() {
                 placeholder="Type to Translate"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
+                onKeyDown={handleKeyDown}
                 />
             </div>
             <div className="translatorForm">

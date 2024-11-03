@@ -2,10 +2,12 @@ require("dotenv").config();
 
 const express = require("express");
 const cohere = require("cohere-ai");
+const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
+app.use(cors());
 app.use(express.json());
 
 const client = new cohere.CohereClientV2({
@@ -18,38 +20,35 @@ const estimateTokens = (text) =>{
 }
 
 app.post("/translate", async (req, res) => {
-    const { sourceLanguage, targetLanguage, userText, formality, to, context} = req.body;
-    const estimatedTokens = estimateTokens(userText);
+    const { sourceLanguage, targetLanguage, inputText, formality, context} = req.body;
+    const estimatedTokens = estimateTokens(inputText);
     const maxTokens = Math.min(estimatedTokens * 2, 2048);
 
     // const formedContext = [
     //     `formality: ${formality}`,
     //     context ? `Additional context: ${context}` : null,
-    //     to ? `to: ${to}` : null,
     // ].filter(Boolean);
 
     const formedContext = [
         `formality: ${formality}`,
         `context: ${context}`,
-        `to: ${to}`,
     ]
 
     try {
         const response = await client.chat({
             model: "command-r-08-2024",
             temperature: 0.3,
-            max_tokens: maxTokens+3000,
+            max_tokens: maxTokens+250,
             messages: [
                 {
                     role: "user",
-                    content: `Translate the following text from ${sourceLanguage} to ${targetLanguage}. Only provide the translated text without any additional comments or explanations: "${userText}"`,               
+                    content: `Translate the following text from ${sourceLanguage} to ${targetLanguage}. Only provide the translated text without any additional comments or explanations: "${inputText}"`,               
                 }
             ],
             documents: formedContext,
         });
 
-        const translatedText = response.message.content[0].text;
-        res.json({translation: translatedText});
+        res.json({translatedText: response.message.content[0].text});
     } catch (error) {
         console.error("Error Translating Text: ", error);
         res.status(500).json({error: error});
