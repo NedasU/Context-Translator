@@ -46,6 +46,7 @@ export const TranslationProvider = ({ children }) => {
             context,
             setContext,
             translatedText,
+            setTranslatedText,
             translate
         }}>
             {children}

@@ -1,21 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { TranslationContext} from "../../Contexts/TranslationContext";
 
 
 
 function TranslatorForm() {
-    const { inputText, setInputText, translatedText, translate } = useContext(TranslationContext);
+    const { inputText, setInputText, translatedText, setTranslatedText, translate, sourceLanguage, targetLanguage } = useContext(TranslationContext);
+    const [outputPlaceholder, setOutputPlaceholder] = useState("");
 
-    const handleKeyDown = (e) =>{
-        if (e.key === 'Enter' && !e.shiftKey){
+    const handleInputChange = (e) => {
+        setInputText(e.target.value);
+        if (!e.target.value.trim()) {
+            setTranslatedText("");
+            setOutputPlaceholder("");
+        } else {
+            setOutputPlaceholder("Click Enter to Translate!");
+        }
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            handleTranslate();
+            if (inputText.trim()) {
+                setOutputPlaceholder("Translating...");
+                handleTranslate();
+            }
         }
     }
 
     const handleTranslate = () => {
         if (inputText.trim()) {
-            translate();
+            if (sourceLanguage === targetLanguage) {
+                setTranslatedText(inputText);
+                setOutputPlaceholder("");
+            } else {
+                translate();
+            }
         }
     }
 
@@ -26,14 +45,14 @@ function TranslatorForm() {
                 className="translatorFormTextArea"
                 placeholder="Type to Translate"
                 value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 />
             </div>
             <div className="translatorForm">
                 <textarea 
                 className="translatorFormTextArea"
-                placeholder=""
+                placeholder={outputPlaceholder}
                 readOnly={true}
                 value={translatedText}
                 />

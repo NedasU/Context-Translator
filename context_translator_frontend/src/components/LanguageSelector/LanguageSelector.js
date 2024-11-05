@@ -3,7 +3,7 @@ import { TranslationContext } from '../../Contexts/TranslationContext';
 
 
 function LanguageSelector() {
-    const {sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage} = useContext(TranslationContext);
+    const {sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, setTranslatedText} = useContext(TranslationContext);
     const [activeDropdown, setActiveDropdown] = useState(null);
 
     const Languages = [
@@ -26,6 +26,13 @@ function LanguageSelector() {
         {code: "SV", name: "Swedish"},
     ];
 
+    function handleSwitch(){
+        const temp = sourceLanguage;
+        setSourceLanguage(targetLanguage);
+        setTargetLanguage(temp);
+        
+    }
+
     return (
         <div className="languageSelector">
             <div className="languageBox">
@@ -46,11 +53,18 @@ function LanguageSelector() {
                             }}
                             type="button"  
                         >
-                            {lang.name}
+                            {lang.name} 
                         </button>
                     ))}
                 </div>
             </div>
+        <button 
+            className="switchLanguagesButton"
+            onClick={handleSwitch}
+            aria-label="Switch Languages"
+        >
+            ⇄
+        </button>
         <div className="languageBox">
             <div className="languageButton"
                 onClick={() => setActiveDropdown(activeDropdown === 'target' ? null : 'target')}
@@ -65,6 +79,7 @@ function LanguageSelector() {
                         onClick={() => {
                             setTargetLanguage(lang.code);
                             setActiveDropdown(null);
+                            setTranslatedText("");
                         }}
                         type="button"  
                     >
