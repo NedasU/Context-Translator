@@ -3,7 +3,7 @@ import { TranslationContext } from '../../Contexts/TranslationContext';
 
 
 function LanguageSelector() {
-    const {sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, setTranslatedText} = useContext(TranslationContext);
+    const {sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage, inputText, setInputText, translatedText, setTranslatedText} = useContext(TranslationContext);
     const [activeDropdown, setActiveDropdown] = useState(null);
 
     const Languages = [
@@ -30,7 +30,9 @@ function LanguageSelector() {
         const temp = sourceLanguage;
         setSourceLanguage(targetLanguage);
         setTargetLanguage(temp);
-        
+        const textTemp = inputText;
+        setInputText(translatedText);
+        setTranslatedText(textTemp);
     }
 
     return (
